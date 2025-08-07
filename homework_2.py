@@ -18,7 +18,7 @@ class Classmate(Person):
         super().__init__(name, birth_date, occupation, higher_education)
         self.group_name = group_name
     def introduce(self):
-        print(f"Привет, меня зовут {self.name}, я одноклассница {self.name},"
+        print(f"Привет, меня зовут {self.name}, я одноклассница {person_1.name},"
               f" учились вместе в {self.group_name}, я родилась {self.birth_date}, я {self.occupation} ")
 
 person = Person("Венера", "8.11.2009", "студентка", False)
