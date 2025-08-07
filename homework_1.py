@@ -5,6 +5,7 @@ class Person:
         self.occupation = occupation
         self.higher_education = higher_education
 
+
 person_1 = Person("venera", 8.11, "student", False )
 person_2 = Person("vika", 15.9, "student", False)
 person_3 = Person("asema", 5.1, "model", False)
