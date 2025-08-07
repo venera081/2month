@@ -5,7 +5,7 @@ class Person:
         self.occupation = occupation
         self.higher_education = higher_education
     def introduce(self):
-        print(f"Меня зовут {self.name}, я родилась {self.birth_date} и я {self.occupation} ")
+        print(f"Меня зовут {person.name}, я родилась {self.birth_date} и я {self.occupation} ")
 class Friend(Person):
     def __init__(self, name, birth_date, occupation, higher_education, hobby):
         super().__init__(name, birth_date, occupation, higher_education)
