@@ -14,7 +14,7 @@ class Person:
         return self.__higher_education
 
     def introduce(self):
-        print(f"Привет, меня зовут {self.name}. Моя профессия {self.occupation}."
+        print(f"Привет, меня зовут {person.name}. Моя профессия {self.occupation}."
               f"У меня {self.higher_education} ")
 
 class Friend(Person):
