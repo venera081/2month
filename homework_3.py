@@ -1,9 +1,24 @@
+from datetime import datetime
+
+
 class Person:
     def __init__(self, name, birth_date, occupation, higher_education):
         self.name = name
-        self.birth_date = birth_date
+        self.__birth_date = datetime.strptime(birth_date, "%d.%m.%Y")
         self.__occupation = occupation
         self.__higher_education = higher_education
+
+    @property
+    def age(self):
+        today = datetime.today()
+        years = today.year - self.__birth_date.year
+        if (today.month, today.day) < (self.__birth_date.month, self.__birth_date.day):
+            years -= 1
+        return years
+
+    @property
+    def birth_date(self):
+        return self.__birth_date.strftime("%d.%m.%Y")
 
     @property
     def occupation(self):
@@ -11,11 +26,14 @@ class Person:
 
     @property
     def higher_education(self):
-        return self.__higher_education
+        if self.__higher_education:
+            return "есть высшее образование"
+        else:
+            return "нет высшего образования"
 
     def introduce(self):
         print(f"Привет, меня зовут {person.name}. Моя профессия {self.occupation}."
-              f"У меня {self.higher_education} ")
+              f"У меня {self.higher_education}. Мне {self.age} лет.")
 
 class Friend(Person):
     def __init__(self, name, birth_date, occupation, higher_education, hobby, friend_name):
@@ -26,7 +44,7 @@ class Friend(Person):
     def introduce(self):
         print(f"Привет, меня зовут {self.name}. Я подруга {self.friend_name}. Мы {self.hobby}. "
               f"Я родилась {self.birth_date}. Моя профессия {self.occupation}. У меня"
-                f" {self.higher_education}")
+                f" {self.higher_education}. Мне {self.age} лет.")
 
 class Classmate(Person):
     def __init__(self, name, birth_date, occupation, higher_education, group_name, classmate_name):
@@ -37,20 +55,23 @@ class Classmate(Person):
     def introduce(self):
         print(f"Привет, меня зовут {self.name}. Я одноклассница {self.classmate_name}."
               f" Учились вместе в {self.group_name}. Я родилась {self.birth_date}. Моя профессия "
-               f"{self.occupation}. У меня {self.higher_education}")
+               f"{self.occupation}. У меня {self.higher_education}. Мне {self.age} лет.")
 
 
-person = Person("Венера", "8.11.2009", "студентка", "нет высшего образования")
-person_1 = Person("Венеры", "8.11.2009", "студентка", "нет высшего образования")
+person = Person("Венера", "8.11.2009", "студентка", False)
+person_1 = Person("Венеры", "8.11.2009", "студентка", False)
 person_1.introduce()
 classmate = Classmate("Вика", "15.9.2009", "студентка",
-                      "нет высшего образования", "9Д", person_1.name)
+                      False, "9Д", person_1.name)
 classmate2 = Classmate("Раяна", "26.12.2009", "студентка",
-"нет высшего образования", "9Д", person_1.name)
+False, "9Д", person_1.name)
 friend = Friend("Асема", "5.01.2009", "модель",
-"нет высшего образования", "любим одну музыкальную группу", person_1.name)
+False, "любим одну музыкальную группу", person_1.name)
 
 for people in [classmate, classmate2, friend]:
     people.introduce()
+
+
+
 
 
