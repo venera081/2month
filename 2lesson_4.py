@@ -55,9 +55,8 @@ print(User.validate_email("igor@gmail.com"))
 
 
 
-
-# Декораторы
-
+ # Декораторы
+#
 # def printer(function):
 #     def wrapper(*args, **kwargs):
 #         print(f"До вызова функции {function.__name__}")
@@ -75,5 +74,5 @@ print(User.validate_email("igor@gmail.com"))
 #
 # hello_world()
 # result = add_numbers(3, 6)
-# print(printer(__name__))
-
+# print(result)
+#
