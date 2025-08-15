@@ -74,5 +74,5 @@ print(User.validate_email("igor@gmail.com"))
 #
 # hello_world()
 # result = add_numbers(3, 6)
-# print(printer(__name__))
+# print(result)
 
