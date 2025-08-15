@@ -55,7 +55,6 @@ print(User.validate_email("igor@gmail.com"))
 
 
 
-
 # Декораторы
 
 # def printer(function):
