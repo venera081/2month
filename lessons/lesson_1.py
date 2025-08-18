@@ -6,10 +6,10 @@ class Car:
         self.max_speed = max_speed
         self.color = color
         self.model = model
-
-car_honda = Car(160, "silver", "Honda Fit")
-car_subaru = Car(180, "black", "Subaru Fit")
-print(car_honda.max_speed, car_honda.color, car_honda.model)
-print(car_subaru.max_speed, car_subaru.color, car_subaru.model)
+if __name__ == '__main__':
+    car_honda = Car(160, "silver", "Honda Fit")
+    car_subaru = Car(180, "black", "Subaru Fit")
+    print(car_honda.max_speed, car_honda.color, car_honda.model)
+    print(car_subaru.max_speed, car_subaru.color, car_subaru.model)
 
 
