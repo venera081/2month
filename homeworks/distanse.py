@@ -26,24 +26,37 @@ class Distance:
             result = to_meter /  Distance.units[self.unit]
             return Distance(round(result, 4), self.unit)
         else:
-            return Distance(self.value + other.value, self.unit)
+            return Distance(self.value + other.value, self.units)
 
     def __sub__(self, other):
         if not isinstance(other, Distance):
             return NotImplemented
-        if self.unit != other.unit:
-            to_meter = self.to_meters() - other.to_meters()
-            result = to_meter /  Distance.units[self.unit]
-            return Distance(round(result, 4), self.unit)
-        else:
-            return Distance(self.value - other.value, self.unit)
+        to_meter = self.to_meters() - other.to_meters()
+        if to_meter < 0:
+            raise ValueError("Результат не может быть отрицательным")
+        result = to_meter /  Distance.units[self.unit]
+        return Distance(round(result, 4), self.unit)
 
-distan = Distance(80, "км")
-distan1 = Distance(40, "м")
-add_distance = distan + distan1
-print(f"При сложении полученный результат: {add_distance}")
-sub_distance = distan - distan1
-print(f"При вычитании полученный результат: {sub_distance}")
+    def __lt__(self, other):
+        if not isinstance(other, Distance):
+            return NotImplemented
+        return self.to_meters() < other.to_meters()
+
+    def __le__(self, other):
+        if not isinstance(other, Distance):
+            return NotImplemented
+        return self.to_meters() <= other.to_meters()
+
+    def __gt__(self, other):
+        if not isinstance(other, Distance):
+            return NotImplemented
+        return self.to_meters() > other.to_meters()
+
+    def __ge__(self, other):
+        if not isinstance(other, Distance):
+            return NotImplemented
+        return self.to_meters() >= other.to_meters()
+
 
 
 
