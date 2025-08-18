@@ -26,7 +26,7 @@ class Distance:
             result = to_meter /  Distance.units[self.unit]
             return Distance(round(result, 4), self.unit)
         else:
-            return Distance(self.value + other.value, self.units)
+            return Distance(self.value + other.value, self.unit)
 
     def __sub__(self, other):
         if not isinstance(other, Distance):
@@ -36,6 +36,11 @@ class Distance:
             raise ValueError("Результат не может быть отрицательным")
         result = to_meter /  Distance.units[self.unit]
         return Distance(round(result, 4), self.unit)
+
+    def __eq__(self, other):
+        if not isinstance(other, Distance):
+            return NotImplemented
+        return self.to_meters() == other.to_meters()
 
     def __lt__(self, other):
         if not isinstance(other, Distance):
