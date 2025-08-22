@@ -1,4 +1,4 @@
-from .distanсe import Distance
+from distanсe import Distance
 
 dt_1 = Distance(25, "км")
 dt_2 = Distance(50, "см")
