@@ -54,14 +54,9 @@ print(User.validate_email("igor@gmail.com"))
 
 
 
-
-<<<<<<<< HEAD:all_lesson/lesson_4.py
-# Декораторы
-
-========
- # Декораторы
 #
->>>>>>>> hw4:lessons/lesson_4.py
+
+#
 # def printer(function):
 #     def wrapper(*args, **kwargs):
 #         print(f"До вызова функции {function.__name__}")
@@ -80,8 +75,7 @@ print(User.validate_email("igor@gmail.com"))
 # hello_world()
 # result = add_numbers(3, 6)
 # print(result)
-<<<<<<<< HEAD:all_lesson/lesson_4.py
 
-========
+
 #
->>>>>>>> hw4:lessons/lesson_4.py
+
