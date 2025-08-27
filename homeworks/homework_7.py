@@ -1,62 +1,58 @@
 import sqlite3
 
-
-def create_table():
-    conn.execute("DROP TABLE IF EXISTS books")
+def create_tables():
+    conn.execute("DROP TABLE IF EXISTS students")
     conn.execute("""
-        CREATE TABLE IF NOT EXISTS books (
+        CREATE TABLE IF NOT EXISTS students (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
-            author TEXT,
-            publication_year INTEGER,
-            genre TEXT,
-            number_of_pages INTEGER,
-            number_of_copies INTEGER
+            age INTEGER,
+            city TEXT
         )
     """)
 
-def insert_books(name, author, publication_year, genre, number_of_pages, number_of_copies):
+def add_student(name, age, city):
     conn.execute(
-        "INSERT INTO books (name, author, publication_year, genre, number_of_pages, number_of_copies)"
-        "VALUES (?, ?, ?, ?, ?, ?)",
-        (name, author, publication_year, genre, number_of_pages, number_of_copies)
+       "INSERT INTO students (name, age, city) VALUES (?, ?, ?)",
+        (name, age, city)
     )
     conn.commit()
 
-def delete_book(book_name):
-    conn.execute("DELETE FROM books WHERE name = ?", (book_name,))
+def delete_student(student_id):
+    conn.execute("DELETE FROM students WHERE id = ?", (student_id,))
     conn.commit()
 
+def get_students():
+    result = conn.execute("SELECT * FROM students ORDER BY age DESC, city LIMIT 2")
+    return result
+
+def get_student_by_age(age):
+    result = conn.execute(
+        "SELECT id, name FROM students WHERE age = ?",
+        (age,)
+    )
+    return result
+
+
 if __name__ == '__main__':
-    conn = sqlite3.connect("database.db")
-    create_table()
+    conn = sqlite3.connect('database.db')
 
-    insert_books("Don Quixote", "Miguel de Cervantes", 1605, "Novel",
-                 863, 500)
-    insert_books("A Tale of Two Cities", "Charles Dickens", 1859, "Historical Fiction",
-                 489, 200)
-    insert_books("The Lord of the Rings", "J.R.R. Tolkien", 1954, "Fantasy",
-                 1216, 150)
-    insert_books("The Little Prince", "Antoine de Saint-Exupéry", 1943, "Fable",
-                 96, 140)
-    insert_books("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997,
-                 "Fantasy", 223, 120)
-    insert_books("And Then There Were None", "Agatha Christie", 1939, "Mystery",
-                 272, 100)
-    insert_books("Dream of the Red Chamber", "Cao Xueqin", 1791,
-                 "Classic Chinese Novel", 2500, 100)
-    insert_books("The Hobbit", "J.R.R. Tolkien", 1937, "Fantasy",
-                 310, 100)
-    insert_books("She: A History of Adventure", "H. Rider Haggard", 1887, "Adventure",
-                 317, 83)
-    insert_books("The Lion, the Witch and the Wardrobe", "C.S. Lewis", 1950, "Fantasy",
-                 208, 85)
+    create_tables()
 
-    delete_book("She: A History of Adventure")
+    add_student("John", 20, "New York")
+    add_student("Aibek", 22, "Karakol")
+    add_student("Aisuluu", 19, "Karakol")
+    add_student("Ariana", 19, "Bishkek")
 
+    for st in get_students():
+        print(st)
+    print("----------------")
 
+    # delete_student(1)
 
+    for st in get_students():
+        print(st)
 
-
-
-
-
+    print("--------------")
+    for st in get_student_by_age(20):
+        print(st)
