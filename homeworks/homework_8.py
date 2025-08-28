@@ -61,9 +61,6 @@ if __name__ == '__main__':
 
 
 
-
-
-
     insert_books("Don Quixote", "Miguel de Cervantes", 1605, 863,
                  500, 1)
     insert_books("A Tale of Two Cities", "Charles Dickens", 1859, 489,
