@@ -1,13 +1,13 @@
 import sqlite3
 
 def create_tables():
-    # conn.execute("DROP TABLE IF EXISTS students")
+    conn.execute("DROP TABLE IF EXISTS students")
     conn.execute("""
         CREATE TABLE IF NOT EXISTS students (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             age INTEGER,
-            city TEXT
+            city TEXT REFERENCES
         )
     """)
 
